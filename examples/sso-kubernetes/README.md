@@ -69,12 +69,14 @@ Use a ``docker-compose.yml`` file as follows:
 	      KEYCLOAK_USER: keycloak
 	      KEYCLOAK_PASSWORD: keycloak1!
 	    ports:
-	      - "9001:8443"
+	      - "8443:8443"
 	      - "9000:8080"
 
 The image ``gunnaraccso/keycloak.server`` has been derived from the original ``jboss/keycloak`` docker image. It additionally includes a basic test setup matching the test configuration of this project. The image exists only for demonstration purposes. Do not use in production. For original Keycloak docker images see [Keycloak Docker image](https://hub.docker.com/r/jboss/keycloak/).
+Or use following: 
+    docker run -e KEYCLOAK_USER=keycloak -e KEYCLOAK_PASSWORD=keycloak1! -p 8443:8443  gunnaraccso/keycloak.server:5.0.0
 
-The only thing you have to adapt is the **Redirect URI** of the Camuna Identity Service Client. Login at the [Keycloak Admin Console](https://localhost:9001/auth/admin/master/console/#/) using user/password as configured above and set ``http://localhost:8080/camunda/login`` as Valid Redirect URI configuration:
+The only thing you have to adapt is the **Redirect URI** of the Camuna Identity Service Client. Login at the [Keycloak Admin Console](https://localhost:8443/auth/admin/master/console/#/) using user/password as configured above and set ``http://localhost:8080/camunda/login`` as Valid Redirect URI configuration:
 
 ![Keycloak-RedirectURI](docs/Keycloak-RedirectURI.PNG) 
 
@@ -88,7 +90,7 @@ For further details on how to setup a Keycloak Camunda Identity Service Client s
 
 The configuration part in ``applicaton.yaml`` is as follows:
 
-	keycloak.url.plugin: ${KEYCLOAK_URL_PLUGIN:https://localhost:9001}
+	keycloak.url.plugin: ${KEYCLOAK_URL_PLUGIN:https://localhost:8443}
 
 	plugin.identity.keycloak:
 	  keycloakIssuerUrl: ${keycloak.url.plugin}/auth/realms/master

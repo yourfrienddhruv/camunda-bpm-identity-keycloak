@@ -19,9 +19,9 @@ server:
   port: 8080
   servlet.context-path: /camunda
 
-keycloak.url.client: ${KEYCLOAK_URL_CLIENT:http://localhost:9000}
-keycloak.url.token: ${KEYCLOAK_URL_TOKEN:http://localhost:9000}
-keycloak.url.plugin: ${KEYCLOAK_URL_PLUGIN:https://localhost:9001}
+keycloak.url.client: ${KEYCLOAK_URL_CLIENT:https://localhost:8443}
+keycloak.url.token: ${KEYCLOAK_URL_TOKEN:https://localhost:8443}
+keycloak.url.plugin: ${KEYCLOAK_URL_PLUGIN:https://localhost:8443}
 
 security:
   oauth2:
